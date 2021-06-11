@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { addRestaurant } from '../actions/restaurants';
 import { connect } from 'react-redux';
 
-export class RestaurantInput extends Component {
+class RestaurantInput extends Component {
 
   state = {
     name: '',
@@ -24,8 +24,8 @@ export class RestaurantInput extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
     // add missing code
-    console.log(this.state)
-    console.log(state)
+    // console.log(this.state)
+    // console.log(this.props.state)
     this.props.addRestaurant(this.state)
   }
 
@@ -54,17 +54,12 @@ export class RestaurantInput extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addRestaurant: () => {
-    dispatch(addRestaurant())
+    addRestaurant: (restaurant) => {
+    dispatch(addRestaurant(restaurant))
     }
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    restaurants: state.restaurants
-  }
-}
 
 //connect this component by wrapping RestaurantInput below
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantInput)
+export default connect(null, mapDispatchToProps)(RestaurantInput)
